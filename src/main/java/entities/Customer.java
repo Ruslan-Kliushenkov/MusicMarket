@@ -14,7 +14,6 @@ public class Customer {
     private int id;
 
     @Column(name = "name")
-    @OneToMany(cascade = CascadeType.ALL)
     String name;
 
     @Column(name = "order")

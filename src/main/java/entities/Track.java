@@ -11,9 +11,6 @@ public class Track {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "album")
-    @OneToOne(cascade = CascadeType.ALL)
-    private Album album;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "artist")
@@ -30,14 +27,6 @@ public class Track {
         this.id = id;
     }
 
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
-    }
-
     public Artists getArtist() {
         return artist;
     }
@@ -46,9 +35,8 @@ public class Track {
         this.artist = artist;
     }
 
-    public Track(int id, Album album, Artists artist) {
+    public Track(int id, Artists artist) {
         this.id = id;
-        this.album = album;
         this.artist = artist;
     }
 

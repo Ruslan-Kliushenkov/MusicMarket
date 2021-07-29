@@ -21,7 +21,8 @@ public class Order {
     private List<Track> track;
 
 
-    @Column(name = "customer")
+    @ManyToOne
+    @JoinColumn(name="customer")
     private Customer customer;
 
     @Override

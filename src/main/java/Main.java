@@ -10,9 +10,6 @@ public class Main {
         Track cadilak = new Track();
         Track dance = new Track();
 
-        cadilak.setAlbum(album);
-        dance.setAlbum(album);
-
         cadilak.setArtist(Artists.MORGENSTERN);
         dance.setArtist(Artists.MORGENSTERN);
 

@@ -28,7 +28,7 @@ public class Album {
     @Column(name = "order")
     private List<Order> order;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @Column(name = "track")
     private List<Track> track;
 
