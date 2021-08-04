@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "track")
@@ -11,10 +12,15 @@ public class Track {
     @Column(name = "id")
     private int id;
 
-
-    @Enumerated(EnumType.STRING)
     @Column(name = "artist")
-    private Artists artist;
+    private Artist artist;
+
+    @Column(name = "album")
+    private Album album;
+
+    @ManyToMany(mappedBy = "track")
+    @Column(name = "order")
+    private List<Order> order;
 
     public Track() {
     }
@@ -27,15 +33,15 @@ public class Track {
         this.id = id;
     }
 
-    public Artists getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
-    public void setArtist(Artists artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
     }
 
-    public Track(int id, Artists artist) {
+    public Track(int id, Artist artist) {
         this.id = id;
         this.artist = artist;
     }

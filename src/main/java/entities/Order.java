@@ -13,16 +13,25 @@ public class Order {
     private int id;
 
     @ManyToMany
+    @JoinTable(
+            name = "album_oder",
+            joinColumns = @JoinColumn(name = "oder_id"),
+            inverseJoinColumns = @JoinColumn(name = "album_id")
+    )
     @Column(name = "album")
     private List<Album> album;
 
+
     @ManyToMany
+    @JoinTable(
+            name = "track_oder",
+            joinColumns = @JoinColumn(name = "oders_id"),
+            inverseJoinColumns = @JoinColumn(name = "track_id")
+    )
     @Column(name = "track")
     private List<Track> track;
 
-
-    @ManyToOne
-    @JoinColumn(name="customer")
+    @Column(name = "customer")
     private Customer customer;
 
     @Override

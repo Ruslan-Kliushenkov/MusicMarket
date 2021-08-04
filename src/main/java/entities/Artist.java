@@ -12,15 +12,15 @@ public class Artist {
     @Column(name = "id")
     private int id;
 
-    @Enumerated(EnumType.STRING)
+
     @Column(name = "artist")
-    private Artists artistName;
+    private Artist artistName;
 
     @Column(name = "track")
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Track> track;
 
-    @Column(name = "track")
+    @Column(name = "album")
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Album> albums;
 }

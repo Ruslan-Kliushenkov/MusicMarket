@@ -13,18 +13,11 @@ public class Album {
     @Column(name = "id")
     private int id;
 
-    @Enumerated(EnumType.STRING)
+
     @Column(name = "artist")
-    private Artists artist;
+    private Artist artist;
 
-    public Album(int id, Artists artist, List<Order> order, List<Track> track) {
-        this.id = id;
-        this.artist = artist;
-        this.order = order;
-        this.track = track;
-    }
-
-    @ManyToMany
+    @ManyToMany(mappedBy = "album")
     @Column(name = "order")
     private List<Order> order;
 
@@ -36,12 +29,19 @@ public class Album {
     public Album() {
     }
 
+    public Album(int id, Artist artist, List<Order> order, List<Track> track) {
+        this.id = id;
+        this.artist = artist;
+        this.order = order;
+        this.track = track;
+    }
+
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setArtist(Artists artist) {
+    public void setArtist(Artist artist) {
         this.artist = artist;
     }
 
@@ -58,7 +58,7 @@ public class Album {
         return id;
     }
 
-    public Artists getArtist() {
+    public Artist getArtist() {
         return artist;
     }
 
