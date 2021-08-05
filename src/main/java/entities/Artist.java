@@ -11,29 +11,28 @@ public class Artist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
 
     @Column(name = "artist")
     private String artistName;
 
-    @Column(name = "track")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "artist",cascade = CascadeType.ALL)
     private List<Track> track;
 
     @Column(name = "album")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "artist",cascade = CascadeType.ALL)
     private List<Album> albums;
 
     public Artist(String artistName) {
         this.artistName = artistName;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

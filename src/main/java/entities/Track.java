@@ -10,15 +10,17 @@ public class Track {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column
     private String title;
 
-    @Column(name = "artist")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "track_artist")
     private Artist artist;
 
-    @Column(name = "album")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "track_album")
     private Album album;
 
     @ManyToMany(mappedBy = "track")
@@ -28,11 +30,11 @@ public class Track {
     public Track() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

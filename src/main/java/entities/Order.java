@@ -11,7 +11,7 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     @ManyToMany
     @JoinTable(
@@ -32,11 +32,11 @@ public class Order {
     @Column(name = "track")
     private List<Track> track;
 
-    @Column(name = "customer")
-    @OneToMany(targetEntity=Customer.class, mappedBy="order", fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_orders")
     private Customer customer;
 
-    public Order(int id, List<Album> album, List<Track> track) {
+    public Order(String id, List<Album> album, List<Track> track) {
         this.id = id;
         this.album = album;
         this.track = track;
@@ -59,11 +59,11 @@ public class Order {
                 '}';
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

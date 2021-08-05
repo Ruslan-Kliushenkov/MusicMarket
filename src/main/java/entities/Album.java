@@ -12,17 +12,17 @@ public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
 
-    @Column(name = "artist")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "album_artist")
     private Artist artist;
 
     @ManyToMany(mappedBy = "albums")
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @Column(name = "track")
+    @OneToMany(mappedBy = "album",cascade = CascadeType.ALL)
     private List<Track> track;
 
     @Column
@@ -35,7 +35,7 @@ public class Album {
     public Album() {
     }
 
-    public Album(int id, Artist artist, List<Order> order, List<Track> track) {
+    public Album(String id, Artist artist, List<Order> order, List<Track> track) {
         this.id = id;
         this.artist = artist;
         this.orders = order;
@@ -44,7 +44,7 @@ public class Album {
 
 
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,7 +61,7 @@ public class Album {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

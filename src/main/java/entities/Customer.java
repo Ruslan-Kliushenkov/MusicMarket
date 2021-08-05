@@ -11,13 +11,13 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(name = "name")
     String name;
 
     @Column(name = "order")
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<Order> orders;
 
 
@@ -30,7 +30,7 @@ public class Customer {
                 '}';
     }
 
-    public Customer(int id, List<Order> orders) {
+    public Customer(String id, List<Order> orders) {
         this.id = id;
         this.orders = orders;
 
@@ -44,11 +44,11 @@ public class Customer {
     public Customer() {
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
