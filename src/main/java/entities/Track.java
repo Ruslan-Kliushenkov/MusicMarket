@@ -12,6 +12,9 @@ public class Track {
     @Column(name = "id")
     private int id;
 
+    @Column
+    private String title;
+
     @Column(name = "artist")
     private Artist artist;
 
@@ -41,9 +44,7 @@ public class Track {
         this.artist = artist;
     }
 
-    public Track(int id, Artist artist) {
-        this.id = id;
-        this.artist = artist;
+    public Track(String title) {
+        this.title = title;
     }
-
 }

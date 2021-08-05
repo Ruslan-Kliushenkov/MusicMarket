@@ -1,22 +1,16 @@
 package dao;
 
-import entities.Order;
-import entities.Track;
+import entities.Artist;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class TrackDao {
-    public void saveTrack(Track track) {
+public class ArtistDao {
+    public void saveArtist(Artist artist) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(track);
+            session.save(artist);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -26,11 +20,11 @@ public class TrackDao {
         }
     }
 
-    public void updateTrack(Track track) {
+    public void updateArtist(Artist artist) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(track);
+            session.update(artist);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -40,16 +34,16 @@ public class TrackDao {
         }
     }
 
-    public void deleteTrack(int id) {
+    public void deleteArtist(int id) {
 
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            Track track = session.get(Track.class, id);
-            if (track != null) {
-                session.delete(track);
-                System.out.println("track is deleted");
+            Artist artist = session.get(Artist.class, id);
+            if (artist != null) {
+                session.delete(artist);
+                System.out.println("artist is deleted");
             }
 
             transaction.commit();
@@ -61,13 +55,13 @@ public class TrackDao {
         }
     }
 
-    public Track getTrack(int id) {
+    public Artist getArtist(int id) {
 
         Transaction transaction = null;
-        Track track = null;
+        Artist artist = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            track = session.get(Track.class, id);
+            artist = session.get(Artist.class, id);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -75,26 +69,6 @@ public class TrackDao {
             }
             e.printStackTrace();
         }
-        return track;
-    }
-
-    public List<Track> getAll() {
-        Transaction transaction = null;
-        List<Track> results = new ArrayList<>();
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-            String hql = "FROM Track";
-            Query<Track> query = session.createQuery(hql);
-            results = query.getResultList();
-            transaction.commit();
-
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            e.printStackTrace();
-        }
-        return results;
+        return artist;
     }
 }

@@ -21,6 +21,7 @@ public class Customer {
     List<Order> orders;
 
 
+
     @Override
     public String toString() {
         return "Customer{" +
@@ -33,6 +34,11 @@ public class Customer {
         this.id = id;
         this.orders = orders;
 
+    }
+
+
+    public Customer(String name) {
+        this.name = name;
     }
 
     public Customer() {

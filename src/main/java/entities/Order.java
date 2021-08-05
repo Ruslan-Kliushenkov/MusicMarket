@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +33,21 @@ public class Order {
     private List<Track> track;
 
     @Column(name = "customer")
+    @OneToMany(targetEntity=Customer.class, mappedBy="order", fetch=FetchType.EAGER)
     private Customer customer;
+
+    public Order(int id, List<Album> album, List<Track> track) {
+        this.id = id;
+        this.album = album;
+        this.track = track;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "order_album",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "album_id")
+    )
+    private List<Album> albums = new ArrayList<>();
 
     @Override
     public String toString() {

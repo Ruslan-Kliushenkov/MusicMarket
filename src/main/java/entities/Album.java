@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -17,14 +18,19 @@ public class Album {
     @Column(name = "artist")
     private Artist artist;
 
-    @ManyToMany(mappedBy = "album")
-    @Column(name = "order")
-    private List<Order> order;
+    @ManyToMany(mappedBy = "albums")
+    private List<Order> orders = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @Column(name = "track")
     private List<Track> track;
 
+    @Column
+    private String title;
+
+    public Album(String title) {
+        this.title = title;
+    }
 
     public Album() {
     }
@@ -32,9 +38,10 @@ public class Album {
     public Album(int id, Artist artist, List<Order> order, List<Track> track) {
         this.id = id;
         this.artist = artist;
-        this.order = order;
+        this.orders = order;
         this.track = track;
     }
+
 
 
     public void setId(int id) {
@@ -46,7 +53,7 @@ public class Album {
     }
 
     public void setOrder(List<Order> order) {
-        this.order = order;
+        this.orders = order;
     }
 
     public void setTrack(List<Track> track) {
@@ -63,7 +70,7 @@ public class Album {
     }
 
     public List<Order> getOrder() {
-        return order;
+        return orders;
     }
 
     public List<Track> getTrack() {

@@ -1,10 +1,7 @@
-import dao.AlbumDao;
-import dao.CustomerDao;
-import entities.*;
-
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Start");
+        Application application = new Application();
+        application.start();
     }
 }
