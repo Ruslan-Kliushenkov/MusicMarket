@@ -84,7 +84,7 @@ public class TrackDao {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "FROM Track";
+            String hql = "FROM TrackTable";
             Query<Track> query = session.createQuery(hql);
             results = query.getResultList();
             transaction.commit();

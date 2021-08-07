@@ -1,16 +1,21 @@
 package entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "track")
+@Table(name = "TrackTable")
 public class Track {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private int id;
 
     @Column
     private String title;
@@ -23,30 +28,11 @@ public class Track {
     @JoinColumn(name = "track_album")
     private Album album;
 
-    @ManyToMany(mappedBy = "track")
-    @Column(name = "order")
-    private List<Order> order;
+    @ManyToMany(mappedBy = "tracks")
+    @Column(name = "orders")
+    private List<Order> orders;
 
     public Track() {
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Artist getArtist() {
-        return artist;
-    }
-
-    public void setArtist(Artist artist) {
-        this.artist = artist;
-    }
-
-    public Track(String title) {
-        this.title = title;
-    }
 }

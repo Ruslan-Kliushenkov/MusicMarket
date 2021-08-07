@@ -2,9 +2,14 @@ package dao;
 
 
 import entities.Customer;
+import entities.Order;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CustomerDao {
@@ -74,4 +79,24 @@ public class CustomerDao {
             }
             return customer;
         }
+
+    public List<Customer> getAll() {
+        Transaction transaction = null;
+        List<Customer> results = new ArrayList<>();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            String hql = "FROM CustomerTable";
+            Query<Customer> query = session.createQuery(hql);
+            results = query.getResultList();
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return results;
+    }
 }

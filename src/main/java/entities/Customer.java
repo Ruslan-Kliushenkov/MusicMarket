@@ -1,63 +1,30 @@
 package entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "customer")
+@Table(name = "CustomerTable")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private int id;
 
     @Column(name = "name")
     String name;
 
-    @Column(name = "order")
+    @Column(name = "orders")
     @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     List<Order> orders;
 
-
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "name=" + name +
-                ", orders=" + orders.size() +
-                '}';
-    }
-
-    public Customer(String id, List<Order> orders) {
-        this.id = id;
-        this.orders = orders;
-
-    }
-
-
-    public Customer(String name) {
-        this.name = name;
-    }
-
     public Customer() {
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
 }

@@ -1,62 +1,34 @@
 package entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
-@Table(name = "artist")
+@Table(name = "ArtistTable")
 public class Artist {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private String id;
+    private int id;
 
 
     @Column(name = "artist")
     private String artistName;
 
     @OneToMany(mappedBy = "artist",cascade = CascadeType.ALL)
-    private List<Track> track;
+    private List<Track> tracks;
 
-    @Column(name = "album")
+    @Column(name = "albums")
     @OneToMany(mappedBy = "artist",cascade = CascadeType.ALL)
     private List<Album> albums;
 
-    public Artist(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getArtistName() {
-        return artistName;
-    }
-
-    public void setArtistName(String artistName) {
-        this.artistName = artistName;
-    }
-
-    public List<Track> getTrack() {
-        return track;
-    }
-
-    public void setTrack(List<Track> track) {
-        this.track = track;
-    }
-
-    public List<Album> getAlbums() {
-        return albums;
-    }
-
-    public void setAlbums(List<Album> albums) {
-        this.albums = albums;
+    public Artist() {
     }
 }

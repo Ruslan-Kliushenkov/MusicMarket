@@ -1,9 +1,14 @@
 package dao;
 
 import entities.Album;
+import entities.Track;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 import utils.HibernateUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlbumDao {
     public void saveAlbum(Album album) {
@@ -70,5 +75,25 @@ public class AlbumDao {
             e.printStackTrace();
         }
         return album;
+    }
+
+    public List<Album> getAll() {
+        Transaction transaction = null;
+        List<Album> results = new ArrayList<>();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            String hql = "FROM AlbumTable";
+            Query<Album> query = session.createQuery(hql);
+            results = query.getResultList();
+            transaction.commit();
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return results;
     }
 }
