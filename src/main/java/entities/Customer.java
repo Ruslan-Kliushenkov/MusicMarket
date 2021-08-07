@@ -8,11 +8,10 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
-@ToString
 @Getter
 @Setter
 @Entity
-@Table(name = "CustomerTable")
+@Table(name = "customerTable")
 public class Customer {
 
     @Id
@@ -28,5 +27,12 @@ public class Customer {
     List<Order> orders;
 
     public Customer() {
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

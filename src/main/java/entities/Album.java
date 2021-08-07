@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@ToString
 @Getter
 @Setter
 @Entity
-@Table(name = "AlbumTable")
+@Table(name = "albumTable")
 public class Album {
 
     @Id
@@ -30,12 +29,19 @@ public class Album {
     @ManyToMany(mappedBy = "albums")
     private List<Order> orders = new ArrayList<>();
 
-    @OneToMany(mappedBy = "album",cascade = CascadeType.ALL)
-    private List<Track> tracks;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Track> tracks = new ArrayList<>();
 
     @Column
     private String title;
 
     public Album() {
+    }
+
+    @Override
+    public String toString() {
+        return "Album{" + "id= " + id +
+                "title= " + title + '\'' +
+                '}';
     }
 }

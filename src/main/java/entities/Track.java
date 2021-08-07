@@ -7,11 +7,11 @@ import lombok.ToString;
 import javax.persistence.*;
 import java.util.List;
 
-@ToString
+
 @Getter
 @Setter
 @Entity
-@Table(name = "TrackTable")
+@Table(name = "trackTable")
 public class Track {
 
     @Id
@@ -22,19 +22,25 @@ public class Track {
     @Column
     private String title;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+   /* @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "track_artist")
     private Artist artist;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "track_album")
-    private Album album;
+    private Album album;*/
 
-    @ManyToMany(mappedBy = "tracks")
+    @ManyToMany(mappedBy = "tracks",cascade = CascadeType.ALL)
     @Column(name = "orders")
     private List<Order> orders;
 
     public Track() {
     }
 
+    @Override
+    public String toString() {
+        return "Track{" +
+                "title='" + title + '\'' +
+                '}';
+    }
 }

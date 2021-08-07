@@ -13,10 +13,9 @@ public class UserControl {
     @SneakyThrows
     public void cmdList() {
         System.out.println("Введите : ");
-        System.out.println("1 - чтобы создать ");
-        System.out.println("2 - чтобы показать");
-        System.out.println("3 - чтобы обновить");
-        System.out.println("4 - чтобы удалить");
+        System.out.println("1 - чтобы создать альбом ");
+        System.out.println("2 - чтобы показать все альбомы");
+        System.out.println("3 - чтобы удалить все альбомы");
 
 
         switch (reader.readLine()) {
@@ -27,11 +26,9 @@ public class UserControl {
                 show();
                 break;
             case("3"):
-                update();
-                break;
-            case("4"):
                 delete();
-                break;
+            default:
+                unsupportedCmd();
 
         }
 
@@ -39,58 +36,19 @@ public class UserControl {
 
     @SneakyThrows
     public void create() {
-        System.out.println("1 - создать альбом");
-        System.out.println("2 - создать артиста");
-        System.out.println("3 - создать кастомера");
-        System.out.println("4 - создать заказ");
-        System.out.println("5 - создать трек");
-
-        switch (reader.readLine()) {
-            case ("1"):
                 albumControl.createAlbum();
-                break;
-            case("2"):
-               /* crateArtist();
-                break;
-            case("3"):
-                crateCustomer();
-                break;
-            case("4"):
-                crateOrder();
-                break;
-            case ("5"):
-                createTrack();
-                break;*/
-            default: unsupportedCmd();
-
         }
-    }
 
     @SneakyThrows
     public void show(){
-        System.out.println("1 - показать альбом");
-        System.out.println("2 - показать артиста");
-        System.out.println("3 - показать кастомера");
-        System.out.println("4 - показать заказ");
-        System.out.println("5 - показать трек");
-    }
+                albumControl.show();
+        }
 
-    @SneakyThrows
-    public void update(){
-        System.out.println("1 - обновить альбом");
-        System.out.println("2 - обновить артиста");
-        System.out.println("3 - обновить кастомера");
-        System.out.println("4 - обновить заказ");
-        System.out.println("5 - обновить трек");
-    }
+
 
     @SneakyThrows
     public void delete(){
-        System.out.println("1 - удалить альбом");
-        System.out.println("2 - удалить артиста");
-        System.out.println("3 - удалить кастомера");
-        System.out.println("4 - удалить заказ");
-        System.out.println("5 - удалить трек");
+        albumControl.deleteAll();
     }
 
     public void unsupportedCmd(){

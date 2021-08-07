@@ -8,6 +8,7 @@ import org.hibernate.query.Query;
 import utils.HibernateUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AlbumDao {
@@ -77,13 +78,14 @@ public class AlbumDao {
         return album;
     }
 
-    public List<Album> getAll() {
+    public List<Album> listAll() {
         Transaction transaction = null;
-        List<Album> results = new ArrayList<>();
+        List<Album> results = Collections.emptyList();;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            String hql = "FROM AlbumTable";
+            String hql = "FROM Album";
+
             Query<Album> query = session.createQuery(hql);
             results = query.getResultList();
             transaction.commit();
@@ -96,4 +98,5 @@ public class AlbumDao {
         }
         return results;
     }
+
 }

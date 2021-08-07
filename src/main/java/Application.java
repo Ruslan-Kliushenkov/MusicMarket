@@ -1,3 +1,4 @@
+import controller.UserControl;
 import dao.*;
 import entities.*;
 
@@ -8,8 +9,8 @@ public class Application {
     private static final AlbumDao albumDao = new AlbumDao();
 
     public void start() {
-        Album album = new Album();
-        albumDao.saveAlbum(album);
+        UserControl userControl = new UserControl();
+        userControl.cmdList();
     }
 
 

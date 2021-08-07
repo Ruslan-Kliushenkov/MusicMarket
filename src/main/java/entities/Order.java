@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-@ToString
+
 @Getter
 @Setter
 @Entity
@@ -26,17 +26,15 @@ public class Order {
             joinColumns = @JoinColumn(name = "oder_id"),
             inverseJoinColumns = @JoinColumn(name = "album_id")
     )
-    @Column(name = "albums")
     private List<Album> albums;
 
 
     @ManyToMany
     @JoinTable(
             name = "track_oder",
-            joinColumns = @JoinColumn(name = "oders_id"),
+            joinColumns = @JoinColumn(name = "orders_id"),
             inverseJoinColumns = @JoinColumn(name = "track_id")
     )
-    @Column(name = "tracks")
     private List<Track> tracks;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -45,4 +43,6 @@ public class Order {
 
     public Order() {
     }
+
+
 }
