@@ -41,7 +41,7 @@ public class Album {
     @Override
     public String toString() {
         return "Album{" + "id= " + id +
-                "title= " + title + '\'' +
+                ", title= " + title + '\'' +
                 '}';
     }
 }
